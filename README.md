@@ -1,79 +1,61 @@
 # 🦠 Parásito: El Lenguaje de Programación Esteganográfico
 
-> *"El código que ves hace una cosa; los comentarios que ignoras hacen otra."*
+> *"El código que ves hace una cosa; los comentarios que ignoras hacen otra, y el ruido blanco esconde un grito de auxilio."*
 
-**Parásito** es un lenguaje de programación esotérico (esolang) que carece de archivos ejecutables, entorno aislado o símbolos especiales. En su lugar, vive como un parásito oculto dentro del código fuente de un programa anfitrión (como Python, C++ o JavaScript).
+**Parásito** es un lenguaje de programación esotérico (esolang) conceptual que carece de sintaxis convencional. Vive como un parásito dentro del código fuente de un programa anfitrión (como Python). 
 
-El paradigma de este lenguaje invierte las reglas de la informática tradicional: mientras que el compilador del lenguaje anfitrión ignora los comentarios para ejecutar el código principal, **el intérprete de Parásito ignora el código principal y compila exclusivamente los comentarios.**
+Mientras que el compilador del lenguaje anfitrión ignora los comentarios para ejecutar el código principal, **el intérprete de Parásito ignora el código principal y compila exclusivamente los comentarios.**
 
 ---
 
 ## 🧠 ¿Cómo funciona? La Regla de la Imparidad
 
-Parásito se basa en la **esteganografía algorítmica**. Para que el programa funcione sin ser detectado en una revisión de código corporativa, el creador debe escribir comentarios que parezcan lenguaje natural y que aparentemente documenten el código anfitrión.
+Parásito se basa en la **esteganografía algorítmica**. El motor procesa los comentarios aplicando una regla de lectura estricta: **solo evalúa las palabras ubicadas en posiciones impares** (1ª, 3ª, 5ª...). 
 
-El motor de Parásito procesa los comentarios aplicando una única regla de lectura estricta: **solo evalúa las palabras ubicadas en posiciones impares** (1ª, 3ª, 5ª, etc.). Las palabras en posiciones pares se consideran "ruido blanco" y se ignoran; su única función es gramatical, sirviendo de pegamento para que la oración tenga sentido semántico para un lector humano.
+Las palabras en posiciones pares se descartan computacionalmente. Su única función es actuar como "pegamento gramatical" para que el texto parezca una nota técnica corporativa.
 
----
+### 🛠️ Sintaxis Completa (Turing Completo)
+El lenguaje lee el texto palabra por palabra. Cualquier signo de puntuación (`, . : ! ?`) pegado a una palabra se limpia automáticamente para que puedas redactar sin romper el código.
 
-## 🛠️ Sintaxis y Funcionalidades
-
-Parásito es un lenguaje completo con memoria persistente, operaciones aritméticas y control de flujo, capaz de ejecutar bucles y saltos condicionales.
-
-Todas las instrucciones requieren que la palabra clave caiga en una posición impar. El argumento de la instrucción será siempre la *siguiente* palabra impar.
-
-### 1. Memoria y Variables
-*   `guardar [dato]`: Sobrescribe la memoria volátil (el Acumulador) con el `[dato]` exacto.
-*   `archivar [nombre]`: Guarda el valor actual del Acumulador en una variable persistente llamada `[nombre]`.
-*   `recordar [nombre]`: Carga el valor de la variable `[nombre]` en el Acumulador.
-
-### 2. Aritmética y Texto
-*   `sumar [valor]`: Suma matemáticamente el `[valor]` (o el contenido de una variable) al Acumulador.
-*   `restar [valor]`: Resta el `[valor]` al Acumulador.
-*   `unir [valor]`: Concatena texto. (Ej: "Hola" + `unir Mundo` = "HolaMundo").
-
-### 3. Control de Flujo (Saltos y Bucles)
-*   `destino [etiqueta]`: Crea un punto de anclaje invisible en el código.
-*   `saltar [etiqueta]`: Salto incondicional. El programa retrocede o avanza hasta el `destino` indicado.
-*   `revisar [etiqueta]`: Salto condicional. **Solo** salta al destino si el valor numérico del Acumulador es **mayor que 0**.
-
-### 4. Entrada y Salida (I/O)
-*   `mostrar`: Imprime el contenido del Acumulador en consola.
-*   `espacio`: Imprime un espacio en blanco.
-*   `salto`: Imprime un salto de línea (`\n`).
-*   `limpiar`: Borra el historial de la consola.
+* **Memoria:** 
+  * `limpiar`: Resetea toda la memoria y la consola.
+  * `guardar [X]`: Guarda el valor `X` en el acumulador.
+  * `archivar [var]`: Guarda el acumulador en la variable `var`.
+  * `recordar [var]`: Carga la variable `var` en el acumulador.
+* **Aritmética y Texto:** 
+  * `sumar [X]`: Suma matemáticamente `X` (o una variable) al acumulador.
+  * `restar [X]`: Resta `X` al acumulador.
+  * `unir [X]`: Concatena cadenas de texto.
+* **Control de Flujo:** 
+  * `destino [etiqueta]`: Crea un punto de anclaje invisible en el código.
+  * `saltar [etiqueta]`: Salto incondicional al punto indicado.
+  * `revisar [etiqueta]`: Salto condicional. **Solo salta** si el acumulador es mayor a `0`.
+* **I/O:** 
+  * `mostrar`: Imprime el acumulador.
+  * `espacio`: Imprime un espacio `" "`.
+  * `salto`: Imprime un salto de línea `\n`.
 
 ---
 
-## 🎭 Estética: El Camuflaje Corporativo
+## 👻 Esteganografía Multinivel: "El Fantasma"
 
-Mientras otros lenguajes esotéricos buscan la belleza en formas visuales geométricas o en notas musicales, la estética de Parásito es puramente **literaria y psicológica**. 
+Dado que Parásito descarta por completo las palabras en posiciones pares, el lenguaje incorpora una tercera capa secreta para humanos.
 
-El código más "bello" en Parásito es aquel que logra ejecutar un algoritmo complejo mientras el texto resultante parece un comentario técnico extremadamente aburrido que cualquier jefe o revisor de código aprobaría sin sospechar.
+A través del **Acróstico Par**, el programador puede usar la primera letra de cada palabra par descartada para enviar un mensaje directo, evadiendo la lógica computacional del lenguaje anfitrión y del propio Parásito.
+
+### 🧩 Diseccionando un Bloque de Código
+Imaginemos este comentario inocente: 
+> *"Limpiar El guardar sistema 10 tiene sumar errores."*
+
+Opera en tres dimensiones simultáneas:
+1. **Capa Anfitrión:** Python ve un `#` e ignora todo.
+2. **Capa Parásito:** Lee los impares -> `Limpiar` -> `guardar` -> `10` -> `sumar`. (El motor suma 10 al acumulador).
+3. **Capa Fantasma:** Lee los pares -> **E**l, **s**istema, **t**iene, **e**rrores. (Mensaje: **ESTE**).
 
 ---
 
-## 🚀 Ejemplo de Uso: Bucle de Cuenta Atrás
+## 🎯 Conclusión
 
-El flujo de trabajo se divide en dos capas. A continuación, vemos un script de red anfitrión (capa 1) cuyos comentarios esconden un bucle de cuenta atrás en Parásito (capa 2).
+El mayor reto de **Parásito** no es la complejidad matemática, sino la **restricción lingüística humana**. Programar aquí requiere resolver un algoritmo de máquina mientras mantienes una cohesión gramatical impecable para el ojo humano. 
 
-**Archivo: `conexion_red.py`**
-```python
-import parasito
-
-def conectar_servidor():
-    # Es necesario guardar el 3 inicial, para luego archivar el contador temporal.
-    # El destino del bucle requiere siempre recordar el contador actual, 
-    # para así mostrar datos. 
-    # Añadir un espacio sirve para restar un 1 seguro.
-    # Al archivar el contador modificado, podemos revisar el bucle nuevamente.
-    # Al terminar, guardar el "Despegue" permite siempre mostrar progreso.
-    
-    print("Iniciando conexión HTTP al servidor...")
-    # ... código real de conexión anfitrión ...
-
-# La ejecución anfitriona fluye con normalidad
-conectar_servidor()
-
-# 🦠 Al final, el archivo despierta al parásito que lee sus propios comentarios
-parasito.despertar(__file__)
+Es el único lenguaje donde una coma mal puesta o una falta de ortografía en un comentario puede causar un fallo crítico en el bucle lógico del sistema.
