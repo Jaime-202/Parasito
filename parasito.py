@@ -10,7 +10,7 @@ if hasattr(sys.stdout, 'reconfigure'):
         pass
 
 """
-Parásito: El Lenguaje de Programación Esteganográfico & Motor de Infección.
+🦠 Parásito: El Lenguaje de Programación Esteganográfico & Motor de Infección.
 
 Capa 1: Código Anfitrión (Python normal execution)
 Capa 2: Código Parásito (Comentarios -> Palabras en posiciones IMPARES)
@@ -47,6 +47,36 @@ DICCIONARIO_COMANDOS = {
     "infectar": "infectar", "propagar": "infectar", "infiltrar": "infectar"
 }
 
+# --- DICCIONARIO DE PALABRAS PARES (PEGAMENTOS CON SENTIDO POR LETRA) ---
+DICCIONARIO_PEGAMENTOS = {
+    'A': ["acceso", "archivo", "almacenamiento", "analisis", "auditoria"],
+    'B': ["bloque", "buffer", "bus", "base", "bucle"],
+    'C': ["codigo", "conexion", "control", "cliente", "consulta"],
+    'D': ["datos", "direccion", "depuracion", "disco", "demonio"],
+    'E': ["entrada", "estructura", "ejecucion", "evento", "estado"],
+    'F': ["funcion", "flujo", "fichero", "formato", "filtro"],
+    'G': ["gestion", "garantia", "generacion", "grupo", "gestor"],
+    'H': ["hilo", "historial", "herramienta", "huella", "hardware"],
+    'I': ["interfaz", "instruccion", "informe", "indice", "inicio"],
+    'J': ["jerarquia", "jornada", "junta"],
+    'K': ["kernel"],
+    'L': ["libreria", "logica", "lectura", "llamada", "linea"],
+    'M': ["memoria", "modulo", "mensaje", "matriz", "marco"],
+    'N': ["nodo", "nivel", "nucleo", "norma", "nota"],
+    'O': ["operacion", "objeto", "orden", "origen", "optimizacion"],
+    'P': ["proceso", "paquete", "puerto", "parametro", "pila"],
+    'Q': ["quorum", "quiebre"],
+    'R': ["registro", "red", "respuesta", "rutina", "ruta"],
+    'S': ["sistema", "servidor", "salida", "sesion", "socket"],
+    'T': ["trama", "tabla", "tipo", "traza", "tarea"],
+    'U': ["usuario", "unidad", "ubicacion", "utilidad"],
+    'V': ["variable", "valor", "ventana", "verificacion", "vector"],
+    'W': ["web"],
+    'X': ["xml"],
+    'Y': ["yarda"],
+    'Z': ["zona"]
+}
+
 def limpiar_palabra(palabra):
     """Limpia puntuación y espacios de una palabra."""
     return palabra.lower().strip(' ,.!?:;"\'()[]{}')
@@ -56,38 +86,29 @@ def desinfectar_raw(palabra):
     return palabra.strip(' ,.!?:;"\'()[]{}')
 
 
-def crear_comentario_esteganografico(palabras_impares, mensaje_fantasma, pegamentos=None):
+def crear_comentario_esteganografico(palabras_impares, mensaje_fantasma):
     """
     Construye una frase comentada técnicamente coherente combinando:
     - Palabras IMPARES (código ejecutable de Parásito)
-    - Palabras PARES (que inician con las letras del mensaje_fantasma)
+    - Palabras PARES (que inician con las letras exactas de mensaje_fantasma)
     """
-    if pegamentos is None:
-        pegamentos = [
-            "sistema", "servidor", "proceso", "codigo", "archivo", "registro",
-            "modulo", "variable", "memoria", "bloque", "operacion", "control",
-            "entrada", "salida", "red", "conexion", "datos", "buffer", "hilo"
-        ]
-    
+    mensaje_clean = [c.upper() for c in mensaje_fantasma if c.isalnum()]
     linea = []
     idx_fantasma = 0
-    len_fantasma = len(mensaje_fantasma)
     
     for i, cmd in enumerate(palabras_impares):
         linea.append(cmd)
         
-        # Seleccionar palabra par (fantasma)
-        if idx_fantasma < len_fantasma:
-            char_target = mensaje_fantasma[idx_fantasma].upper()
+        # Seleccionar palabra par coherente que comience con la letra deseada
+        if idx_fantasma < len(mensaje_clean):
+            char_target = mensaje_clean[idx_fantasma]
             idx_fantasma += 1
-            # Buscar pegamento que empiece por char_target o generar una palabra
-            candidatos = [p for p in pegamentos if p.upper().startswith(char_target)]
-            if candidatos:
-                palabra_par = candidatos[i % len(candidatos)]
-            else:
-                palabra_par = char_target + "lemento"
+            opciones = DICCIONARIO_PEGAMENTOS.get(char_target, ["sistema"])
+            palabra_par = opciones[i % len(opciones)]
         else:
-            palabra_par = pegamentos[i % len(pegamentos)]
+            # Si se acaban las letras del mensaje secreto, usar pegamentos neutros que formen palabras reales
+            opciones = DICCIONARIO_PEGAMENTOS['S']
+            palabra_par = opciones[i % len(opciones)]
             
         linea.append(palabra_par)
         
@@ -106,7 +127,7 @@ def embed_secret_message(ruta_destino, mensaje):
         print(f"[ERROR] Error al guardar mensaje secreto: {e}")
 
 
-def infectar_archivo(ruta_target, mensaje_fantasma="INFECTADO", programa_parasito=None):
+def infectar_archivo(ruta_target, mensaje_fantasma="INFILTRADO", programa_parasito=None):
     """
     Inyecta el parásito dentro de un archivo Python sin alterar su funcionalidad original.
     """
@@ -144,7 +165,7 @@ def infectar_archivo(ruta_target, mensaje_fantasma="INFECTADO", programa_parasit
     return True
 
 
-def infectar_repositorio(directorio_repo, mensaje_fantasma="VIRUS_PARASITO", programa_parasito=None):
+def infectar_repositorio(directorio_repo, mensaje_fantasma="INFILTRADO", programa_parasito=None):
     """
     Escanea un directorio/repositorio e infecta todos los archivos .py encontrados.
     """

@@ -1,18 +1,18 @@
 """
 Prueba 1: Demostración de Código Anfitrión Inocente infectado con Parásito.
 El programa Python simula un servicio de autenticación corporativo.
-En los comentarios conviven las 3 capas:
+En los comentarios conviven las 3 capas con mensajes coherentes:
 1. Capa Anfitrión: Código Python funcional de autenticación.
 2. Capa Parásito: Esolang que concatena credenciales y genera un mensaje secreto infiltrado.
-3. Capa Fantasma: Acróstico en posiciones pares formando 'SECRET'.
+3. Capa Fantasma: Acróstico en posiciones pares formando la palabra 'SECRETO'.
 """
 
 import parasito
 
 def autenticar_usuario(usuario, password):
-    # Asignar Servidor Almacenar Enlace "ACCESO_" Conexión
-    # Anexar Registro "CONCEDIDO_" Entrada Anexar Transmisión "NIVEL_ALPHA" Operación
-    # Expresar Respuesta Salto Transmisión Ocultar Excepción "PAYLOAD_INFILTRADO_EXITOSAMENTE" Transmisión
+    # Asignar Servidor "ACCESO_" Enlace Anexar Conexion "CONCEDIDO_" Registro
+    # Anexar Entrada "NIVEL_ALPHA" Transmision Expresar Respuesta Salto Sistema
+    # Ocultar Error "PAYLOAD_INFILTRADO_EXITOSAMENTE" Transmision
     
     print(f"[Python System] Verificando usuario: '{usuario}'...")
     if usuario == "admin" and password == "1234":
@@ -24,5 +24,4 @@ if __name__ == "__main__":
     resultado = autenticar_usuario("admin", "1234")
     print(f"[Python System] Autenticación completada. Resultado: {resultado}\n")
     
-    # El parásito despierta al finalizar o ejecutarse el script
     parasito.despertar(__file__)

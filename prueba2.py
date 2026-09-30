@@ -54,7 +54,7 @@ def ejecutar_prueba2():
         "limpiar", "almacenar", "PAYLOAD_INFILTRADO_EN_REPO",
         "expresar", "linea", "ocultar", "REPO_COMPROMETIDO"
     ]
-    mensaje_fantasma = "HACKED"
+    mensaje_fantasma = "INFILTRADO"
 
     # Infectar el repositorio objetivo
     parasito.infectar_repositorio(dir_repo, mensaje_fantasma=mensaje_fantasma, programa_parasito=payload_parasito)

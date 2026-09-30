@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.parasito_secret.txt
+mi_repositorio_objetivo/
