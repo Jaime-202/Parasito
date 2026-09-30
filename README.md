@@ -60,29 +60,139 @@ Imaginemos este comentario:
 
 ---
 
-## 🧪 Demostraciones Prácticas (Ejemplos)
+## 🧪 Demostraciones Prácticas — Las 4 Pruebas
 
-El proyecto incluye 3 archivos de prueba completos que demuestran todas las capacidades de Parásito:
+El proyecto incluye **4 archivos de prueba** que demuestran, capa por capa, todas las capacidades de Parásito. Cada uno actúa como un programa Python completamente funcional mientras esconde en sus comentarios dos programas adicionales invisibles.
 
-### 📄 [`prueba1.py`](./prueba1.py) — Infiltración en Código Anfitrión Inocente
-* **Qué hace**: Simula un script Python normal de autenticación de usuarios. En los comentarios del módulo se oculta un programa en Parásito que concatena datos corporativos, genera un archivo secreto infiltrado (`.parasito_secret.txt`) y transmite la palabra acróstica `SECRET` en las posiciones pares.
+---
 
-### 📄 [`prueba2.py`](./prueba2.py) — Infección Automática de Repositorios
-* **Qué hace**: Crea una estructura de repositorio (`mi_repositorio_objetivo`) con múltiples módulos Python (`modulo_pago.py`, `servicio_email.py`). Utiliza `parasito.infectar_repositorio()` para escanear e inyectar de forma imperceptible los comentarios esteganográficos en todos los scripts `.py`. Al ejecutar cualquiera de los scripts del repositorio, la lógica original de Python funciona normalmente mientras el Parásito se activa en segundo plano.
+### 🔬 ¿Cómo leer cada prueba?
 
-### 📄 [`prueba3.py`](./prueba3.py) — Bucle Condicional Turing-Completo y Sinónimos Técnicos
-* **Qué hace**: Demuestra la potencia lógica del lenguaje realizando un **bucle de cuenta regresiva (`3, 2, 1`)** utilizando control de flujo condicional (`nodo`, `evaluar`, `sustraer`, `recordar`, `expresar`) y el diccionario extendido de sinónimos técnicos en español.
+Cada archivo de prueba tiene **3 dimensiones simultáneas**:
+
+| Capa | Quién la ejecuta | ¿Qué ve / hace? |
+|---|---|---|
+| **Capa 1 — Anfitrión** | Python | Código normal y funcional (autenticación, cálculo, etc.) |
+| **Capa 2 — Parásito (impares)** | VM Parásito | Instrucciones del esolang en posiciones 1ª, 3ª, 5ª... de cada comentario |
+| **Capa 3 — Fantasma (pares)** | El ojo humano | Primera letra de las palabras en posición 2ª, 4ª, 6ª... forma un acróstico secreto |
+
+**Ejemplo diseccionado:**
+```
+# Asignar Servidor "ACCESO_" Enlace Anexar Conexion
+  ───────────────────────────────────────────────
+  Impar:  Asignar         "ACCESO_"      Anexar      → VM: guarda y concatena
+  Par:            Servidor        Enlace       Conexion → Acróstico: S·E·C → "SEC..."
+```
+
+---
+
+### 📄 [`prueba1.py`](./prueba1.py) — Autenticación Infiltrada
+
+**Capa anfitrión:** Servicio de login corporativo (`admin / 1234`).
+
+**Capa Parásito:** La VM concatena credenciales secretas paso a paso:
+```
+Asignar "ACCESO_"        → acumulador = "ACCESO_"
+Anexar  "CONCEDIDO_"     → acumulador = "ACCESO_CONCEDIDO_"
+Anexar  "NIVEL_ALPHA"    → acumulador = "ACCESO_CONCEDIDO_NIVEL_ALPHA"
+Expresar                 → imprime el resultado
+Ocultar "PAYLOAD_..."    → escribe .parasito_secret.txt
+```
+
+**Capa Fantasma:** Palabras pares `Servidor · Enlace · Conexion · Registro · Entrada · Transmision` → acróstico **`SECRET`**
+
+---
+
+### 💉 [`prueba2.py`](./prueba2.py) — Infección Automática de Repositorios
+
+**Capa anfitrión:** Script Python que crea un repositorio de prueba (`mi_repositorio_objetivo/`) con módulos reales (`modulo_pago.py`, `servicio_email.py`).
+
+**Capa Parásito:** Usa `parasito.infectar_repositorio()` para:
+1. Escanear todos los `.py` del repositorio víctima.
+2. Inyectar al final de cada archivo un bloque con `import parasito` + `parasito.despertar()`.
+3. Ejecutar el módulo infectado con `subprocess` — el código original funciona, pero el Parásito se activa en silencio.
+
+**Capa Fantasma:** Las palabras pares del comentario inyectado forman el acróstico **`HACKED`**.
+
+> Esta prueba simula un **supply chain attack** esteganográfico: el repositorio víctima parece intacto para cualquier revisor humano.
+
+---
+
+### 🔁 [`prueba3.py`](./prueba3.py) — Bucle Turing-Completo
+
+**Capa anfitrión:** Función `calcular_matriz_financiera()` que devuelve una matriz de ejemplo.
+
+**Capa Parásito:** Demuestra que el esolang es Turing-completo ejecutando un bucle de cuenta atrás con variables, aritmética y saltos condicionales:
+```
+Almacenar 3 → Archivar cont
+[etiqueta: bucle]
+  Recordar msg → Expresar        → imprime mensaje
+  Recordar cont → Expresar       → imprime 3, 2, 1...
+  Sustraer 1 → Archivar cont
+  Evaluar bucle                  → si cont > 0, salta
+Almacenar "¡Bucle_Completado!" → Expresar
+Ocultar "SISTEMA_TOTALMENTE_CONTROLADO"
+```
+
+**Salida de la VM:**
+```
+Bucle_Iniciado: 3
+Bucle_Iniciado: 2
+Bucle_Iniciado: 1
+¡Bucle_Completado!
+```
+
+**Capa Fantasma:** Palabras pares forman el acróstico **`CICLO`**.
+
+---
+
+### 🧮 [`prueba4.py`](./prueba4.py) — Calculadora Interactiva con Menú
+
+**Capa anfitrión:** Calculadora corporativa completamente funcional con menú interactivo que soporta suma, resta, multiplicación, división, potencia y módulo, además de un historial de operaciones.
+
+**Capa Parásito:** Escondido en los comentarios de las funciones aritméticas, la VM construye y muestra un mensaje filosófico perturbador sobre los números:
+```
+"LOS_NUMEROS SON_SOLO ILUSIONES ___ Y_EL_PARASITO ES_REAL___
+>>> CALCULA_TU_FUTURO <<<"
+```
+Y escribe en disco: `.parasito_secret.txt` → `LA_CALCULADORA_TE_VIGILA`
+
+**Capa Fantasma:** Acróstico **`NUMBERS`** en las palabras pares de los comentarios.
+
+```
+╔══════════════════════════════════════╗
+║   🧮  CALCULADORA CORPORATIVA v4.0   ║
+╠══════════════════════════════════════╣
+║  [1]  Suma              (a + b)      ║
+║  [2]  Resta             (a - b)      ║
+║  [3]  Multiplicación    (a × b)      ║
+║  [4]  División          (a ÷ b)      ║
+║  [5]  Potencia          (a ^ b)      ║
+║  [6]  Módulo            (a mod b)    ║
+║  [0]  Salir                          ║
+╚══════════════════════════════════════╝
+```
+
+---
+
+## 🗺️ Mapa de las 4 Pruebas
+
+```
+prueba1.py  →  CONCATENACIÓN + MENSAJE SECRETO en código de autenticación
+prueba2.py  →  PROPAGACIÓN / INFECCIÓN automática de repositorios ajenos
+prueba3.py  →  TURING-COMPLETITUD: bucles, variables y saltos condicionales
+prueba4.py  →  CALCULADORA INTERACTIVA: el anfitrión más inocente oculta el grito más oscuro
+```
 
 ---
 
 ## 🚀 Cómo Ejecutar los Ejemplos
 
-Puedes ejecutar cualquiera de las pruebas desde la terminal:
-
 ```bash
 python prueba1.py
 python prueba2.py
 python prueba3.py
+python prueba4.py
 ```
 
 ---
@@ -90,3 +200,5 @@ python prueba3.py
 ## 🎯 Conclusión
 
 El mayor reto de **Parásito** no es la complejidad matemática, sino la **restricción lingüística humana**. Programar aquí requiere resolver un algoritmo de máquina mientras mantienes una cohesión gramatical impecable para el ojo humano.
+
+Cada prueba es, simultáneamente, un programa funcional, un programa esotérico y un mensaje secreto. **Tres realidades superpuestas en el mismo archivo de texto.**
