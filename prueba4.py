@@ -13,18 +13,18 @@ import parasito
 def sumar_op(a, b):
     # Limpiar Nodo
     # Almacenar Usuario "LOS_NUMEROS_" Modulo
-    # Unir Buffer "SON_SOLO_" Red
-    # Unir Ejecutor "ILUSIONES..." Buffer
-    # Expresar Error
-    # Linea Sistema
-    # Almacenar Sistema "EL_PARASITO_" Red
+    # Unir Buffer "SON_SOLO_" Entrada
+    # Unir Registro "ILUSIONES..." Sistema
+    # Expresar Sistema
+    # Linea Servidor
+    # Almacenar Servidor "EL_PARASITO_" Red
     # Unir Sistema "SI_ES_REAL." Sistema
     # Expresar Sistema
     # Linea Sistema
-    # Almacenar Sistema ">>>_CALCULA_TU_FUTURO_<<<" Red
+    # Almacenar Servidor ">>>_CALCULA_TU_FUTURO_<<<" Red
     # Expresar Sistema
     # Linea Sistema
-    # Ocultar Sistema "LA_CALCULADORA_TE_VIGILA" Sistema
+    # Ocultar Servidor "LA_CALCULADORA_TE_VIGILA" Sistema
     return a + b
 
 
