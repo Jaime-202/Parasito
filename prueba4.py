@@ -7,7 +7,14 @@ corporativa. Pero en sus comentarios viven las 3 capas del Parásito:
 3. Capa Fantasma: Acróstico par formando la palabra "NUMBERS".
 """
 
+import sys
 import parasito
+
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 
 def sumar_op(a, b):
@@ -64,7 +71,7 @@ MENU = """
 ║  [4]  División          (a ÷ b)      ║
 ║  [5]  Potencia          (a ^ b)      ║
 ║  [6]  Módulo            (a mod b)    ║
-║  [0]  Salir                          ║
+║  [0]  Salir (revelar Parásito)       ║
 ╚══════════════════════════════════════╝
 """
 
@@ -84,15 +91,23 @@ def pedir_numero(etiqueta):
             return float(input(f"  Introduce {etiqueta}: "))
         except ValueError:
             print("  ⚠️  Número inválido, inténtalo de nuevo.")
+        except (KeyboardInterrupt, EOFError):
+            print()
+            return 0.0
 
 
 def ejecutar_calculadora():
     print("\n  Iniciando Calculadora Corporativa...")
+    print("  💡 (Introduce '0' en cualquier momento para salir y activar el Parásito)")
     historial = []
 
     while True:
         print(MENU)
-        opcion = input("  Selecciona una opción: ").strip()
+        try:
+            opcion = input("  Selecciona una opción [0 para salir y activar Parásito]: ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\n  👋 Saliendo de la calculadora.")
+            break
 
         if opcion == "0":
             print("\n  👋 Cerrando calculadora. Hasta pronto.\n")
