@@ -139,11 +139,10 @@ Salida de la VM:
 
 Este repositorio incluye un **vector de demostración física** pensado para presentaciones:
 
-1. Clona el repo en un pendrive con etiqueta **"USB CONTAGIADO / ACTIVO"**
-2. Ejecuta `lanzar_demo.bat` en el ordenador del aula (doble clic)
+1. En un pendrive meto parasito.py y prueba4.py (calculadora)
+2. Se ejecuta `lanzar_demo.bat` en el ordenador del aula
 3. Interactúa con la calculadora
 4. Al salir, el Parásito se activa y crea `.parasito_secret.txt` en el **Escritorio** de esa máquina
-5. Acompaña la demo con la ficha técnica imprimible: `cheatsheet_parasito.html`
 
 ---
 
