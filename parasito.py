@@ -116,13 +116,52 @@ def crear_comentario_esteganografico(palabras_impares, mensaje_fantasma):
 
 
 def embed_secret_message(ruta_destino, mensaje):
-    """Escribe un archivo de mensaje secreto oculto en el directorio destino."""
-    dir_path = os.path.dirname(os.path.abspath(ruta_destino))
-    secret_path = os.path.join(dir_path, ".parasito_secret.txt")
+    """
+    Escribe un archivo de mensaje secreto en el Escritorio del usuario activo.
+    Fallback: directorio del script si el Escritorio no está disponible.
+    """
+    # Intentar obtener el Escritorio multiplataforma
+    desktop = None
+    try:
+        if sys.platform == "win32":
+            import ctypes
+            buf = ctypes.create_unicode_buffer(32768)
+            ctypes.windll.shell32.SHGetFolderPathW(0, 0x0010, 0, 0, buf)
+            desktop = buf.value
+        else:
+            desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+    except Exception:
+        pass
+
+    if not desktop or not os.path.isdir(desktop):
+        desktop = os.path.dirname(os.path.abspath(ruta_destino))
+
+    secret_path = os.path.join(desktop, ".parasito_secret.txt")
+
+    contenido = f"""\
+╔══════════════════════════════════════════════════════════╗
+║          🦠  P A R Á S I T O  —  A C T I V O  🦠         ║
+╠══════════════════════════════════════════════════════════╣
+║                                                          ║
+║  MENSAJE INFILTRADO: {mensaje:<38}║
+║                                                          ║
+║  Este archivo fue creado por el Lenguaje Parásito        ║
+║  escondido en los comentarios de la calculadora.         ║
+║                                                          ║
+║  Mientras calculabas... el parásito te observaba.        ║
+║  Los números son solo ilusiones.                         ║
+║  El código que ves hace una cosa.                        ║
+║  El código que no ves... ya terminó.                     ║
+║                                                          ║
+║  🔬 github: [tu-repo-aqui]                               ║
+╚══════════════════════════════════════════════════════════╝
+"""
+
     try:
         with open(secret_path, "w", encoding="utf-8") as f:
-            f.write(mensaje + "\n")
-        print(f"[SECRETO] Mensaje secreto infiltrado en: {secret_path}")
+            f.write(contenido)
+        print(f"\n[SECRETO] ¡INFECCIÓN EXITOSA! Archivo creado en el Escritorio:")
+        print(f"          {secret_path}")
     except Exception as e:
         print(f"[ERROR] Error al guardar mensaje secreto: {e}")
 
